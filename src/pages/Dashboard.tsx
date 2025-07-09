@@ -1,26 +1,16 @@
-import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
-import { Circle, Play, Power, Settings } from 'lucide-react';
+import { Circle, Play, Power, Settings, Wifi } from 'lucide-react';
 import synqBoxHero from '@/assets/synqbox-hero.jpg';
+import { useRealTimeData } from '@/hooks/useRealTimeData';
 
 const Dashboard = () => {
-  const [synqLevel] = useState(73);
-  const [isOnline] = useState(true);
-  const [isSyncing, setIsSyncing] = useState(false);
-
-  const mockData = {
-    syncSpeed: '42.7 MB/s',
-    lastSync: '3 minutes ago',
-    health: 'All systems nominal',
-    uptime: '7 days, 14 hours'
-  };
+  const { data, simulateSync } = useRealTimeData();
 
   const handleStartSync = () => {
-    setIsSyncing(true);
-    setTimeout(() => setIsSyncing(false), 3000);
+    simulateSync();
   };
 
   return (
@@ -39,12 +29,15 @@ const Dashboard = () => {
             </div>
             <div className="text-right">
               <Badge 
-                variant={isOnline ? "default" : "destructive"} 
-                className={isOnline ? "bg-success text-success-foreground animate-pulse-glow" : ""}
+                variant={data.isOnline ? "default" : "destructive"} 
+                className={`transition-all duration-500 ${data.isOnline ? "bg-success text-success-foreground animate-pulse-glow" : ""}`}
               >
-                {isOnline ? 'Online' : 'Offline'}
+                <div className="flex items-center space-x-1">
+                  <Circle className={`w-2 h-2 ${data.isOnline ? 'animate-pulse' : ''}`} />
+                  <span>{data.isOnline ? 'Online' : 'Offline'}</span>
+                </div>
               </Badge>
-              <p className="text-sm text-muted-foreground mt-2">Uptime: {mockData.uptime}</p>
+              <p className="text-sm text-muted-foreground mt-2">Uptime: {data.uptime}</p>
             </div>
           </div>
         </CardContent>
@@ -59,8 +52,8 @@ const Dashboard = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
-              <div className="text-2xl font-bold">{synqLevel}%</div>
-              <Progress value={synqLevel} className="h-2" />
+              <div className="text-2xl font-bold transition-all duration-700 ease-out">{data.synqLevel}%</div>
+              <Progress value={data.synqLevel} className="h-2 transition-all duration-1000" />
               <p className="text-xs text-muted-foreground">Optimal range: 70-95%</p>
             </div>
           </CardContent>
@@ -73,11 +66,11 @@ const Dashboard = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
-              <div className="text-2xl font-bold">{mockData.syncSpeed}</div>
+              <div className="text-2xl font-bold transition-all duration-500">{data.syncSpeed}</div>
               <div className="flex items-center space-x-1">
-                <Circle className={`w-2 h-2 ${isSyncing ? 'text-success animate-synq-spin' : 'text-muted-foreground'}`} />
-                <span className="text-xs text-muted-foreground">
-                  {isSyncing ? 'Syncing...' : 'Idle'}
+                <Circle className={`w-2 h-2 transition-colors duration-300 ${data.isSyncing ? 'text-success animate-synq-spin' : 'text-muted-foreground'}`} />
+                <span className="text-xs text-muted-foreground transition-all duration-300">
+                  {data.isSyncing ? 'Syncing...' : 'Idle'}
                 </span>
               </div>
             </div>
@@ -91,7 +84,7 @@ const Dashboard = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
-              <div className="text-2xl font-bold">{mockData.lastSync}</div>
+              <div className="text-2xl font-bold transition-all duration-500">{data.lastSync}</div>
               <p className="text-xs text-muted-foreground">Successful data transfer</p>
             </div>
           </CardContent>
@@ -104,10 +97,10 @@ const Dashboard = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
-              <Badge variant="secondary" className="bg-success text-success-foreground">
+              <Badge variant="secondary" className="bg-success text-success-foreground transition-all duration-300">
                 Healthy
               </Badge>
-              <p className="text-xs text-muted-foreground">{mockData.health}</p>
+              <p className="text-xs text-muted-foreground transition-all duration-500">{data.health}</p>
             </div>
           </CardContent>
         </Card>
@@ -125,11 +118,11 @@ const Dashboard = () => {
           <div className="flex flex-wrap gap-4">
             <Button 
               onClick={handleStartSync}
-              disabled={isSyncing}
+              disabled={data.isSyncing}
               className="bg-gradient-status hover:shadow-glow-success transition-all duration-300"
             >
-              <Play className="w-4 h-4 mr-2" />
-              {isSyncing ? 'Syncing...' : 'Start Sync'}
+              <Play className={`w-4 h-4 mr-2 transition-transform ${data.isSyncing ? 'animate-spin' : ''}`} />
+              {data.isSyncing ? 'Syncing...' : 'Start Sync'}
             </Button>
             
             <Button variant="outline">
