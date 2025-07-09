@@ -3,6 +3,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Circle, Settings, Book, FileText, Power } from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
 
 const Layout = () => {
   const [isOnline] = useState(true);
@@ -15,7 +16,7 @@ const Layout = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background transition-colors duration-300">
       {/* Header */}
       <header className="border-b border-border bg-card">
         <div className="container mx-auto px-4 py-4">
@@ -38,10 +39,13 @@ const Layout = () => {
               </div>
             </div>
 
-            <Button variant="outline" size="sm">
-              <Power className="w-4 h-4 mr-2" />
-              Quick Reboot
-            </Button>
+            <div className="flex items-center space-x-2">
+              <ThemeToggle />
+              <Button variant="outline" size="sm">
+                <Power className="w-4 h-4 mr-2" />
+                Quick Reboot
+              </Button>
+            </div>
           </div>
         </div>
       </header>
