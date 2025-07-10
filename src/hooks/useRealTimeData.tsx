@@ -1,5 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 
+/**
+ * Real-time data interface for SynqBox device metrics
+ * This structure is designed to match the expected SynqBox API response
+ * and can be easily adapted when integrating with the actual device API
+ */
 interface RealTimeData {
   synqLevel: number;
   syncSpeed: string;
@@ -11,6 +16,16 @@ interface RealTimeData {
   networkStrength: number;
 }
 
+/**
+ * Hook for managing real-time SynqBox device data
+ * Currently uses mock data for demonstration purposes
+ * 
+ * To integrate with real API:
+ * 1. Replace mock data generation with WebSocket connection
+ * 2. Map API response structure to RealTimeData interface
+ * 3. Add error handling and reconnection logic
+ * 4. Implement actual device control methods
+ */
 export const useRealTimeData = () => {
   const [data, setData] = useState<RealTimeData>({
     synqLevel: 73,

@@ -9,6 +9,17 @@ import { Badge } from '@/components/ui/badge';
 import { Settings, Volume1, Circle, Play } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
+/**
+ * Device Controls Page
+ * 
+ * Provides interface for:
+ * - Network configuration (WiFi settings)
+ * - Sync management (presets, manual control)
+ * - System settings (advanced configuration)
+ * 
+ * Ready for API integration - form handlers just need
+ * to call actual SynqBox API endpoints instead of showing toasts
+ */
 const Controls = () => {
   const { toast } = useToast();
   const [autoSync, setAutoSync] = useState(true);

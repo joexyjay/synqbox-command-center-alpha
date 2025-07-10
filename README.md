@@ -1,73 +1,201 @@
-# Welcome to your Lovable project
+# SynqBox Control Center
 
-## Project info
+A modern React-based dashboard for managing SynqBox devices with real-time monitoring, configuration controls, and system management capabilities.
+
+## 🚀 Live Demo
 
 **URL**: https://lovable.dev/projects/6f8ca372-bcd7-4a5f-b1fd-e169ba2f5f0c
 
-## How can I edit this code?
+## 📋 Features
 
-There are several ways of editing your application.
+- **Real-time Dashboard**: Live metrics with animated progress indicators
+- **Device Controls**: Network configuration, sync management, and system controls
+- **Live Logs**: Real-time log streaming with filtering and search
+- **Theme Support**: Dark/light mode with smooth transitions
+- **Responsive Design**: Optimized for desktop, tablet, and mobile
+- **Mock Data**: Complete simulation for development and demonstration
 
-**Use Lovable**
+## 🛠 Technology Stack
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/6f8ca372-bcd7-4a5f-b1fd-e169ba2f5f0c) and start prompting.
+- **Frontend**: React 18 + TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS + Custom Design System
+- **UI Components**: shadcn/ui
+- **Routing**: React Router v6
+- **State Management**: React Hooks
+- **Icons**: Lucide React
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🏗 Project Structure
 
-**Use your preferred IDE**
+```
+src/
+├── components/           # Reusable UI components
+│   ├── ui/              # shadcn/ui components
+│   ├── Layout.tsx       # Main layout with navigation
+│   ├── ThemeProvider.tsx # Theme context provider
+│   └── ThemeToggle.tsx  # Light/dark mode toggle
+├── pages/               # Route components
+│   ├── Dashboard.tsx    # Main dashboard (Index.tsx)
+│   ├── Controls.tsx     # Device configuration
+│   ├── Logs.tsx         # Log viewer
+│   ├── About.tsx        # System information
+│   └── NotFound.tsx     # 404 page
+├── hooks/               # Custom React hooks
+│   ├── useRealTimeData.tsx # Mock data simulation
+│   └── use-toast.ts     # Toast notifications
+├── assets/              # Static assets
+│   └── synqbox-hero.jpg # Hero background image
+├── lib/                 # Utility functions
+│   └── utils.ts         # Shared utilities
+├── index.css           # Global styles + design system
+└── main.tsx            # Application entry point
+```
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🎨 Design System
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+The project uses a comprehensive design system defined in `src/index.css`:
 
-Follow these steps:
+- **Colors**: Semantic color tokens (primary, secondary, accent, success, warning)
+- **Gradients**: Custom gradient utilities (`bg-gradient-synq`, `bg-gradient-status`)
+- **Animations**: Custom keyframes for smooth interactions
+- **Shadows**: Glow effects for interactive elements
+- **Theme**: Complete dark/light mode support
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
+## 🔧 Development Setup
+
+### Prerequisites
+- Node.js 16+ 
+- npm or yarn
+
+### Installation
+
+```bash
+# Clone the repository
 git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
 cd <YOUR_PROJECT_NAME>
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Install dependencies
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Available Scripts
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+npm run dev        # Start development server
+npm run build      # Build for production
+npm run preview    # Preview production build
+npm run lint       # Run ESLint
+```
 
-**Use GitHub Codespaces**
+## 🔌 API Integration Guide
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Currently using mock data via `useRealTimeData` hook. To integrate with real SynqBox API:
 
-## What technologies are used for this project?
+### 1. Replace Mock Data Service
 
-This project is built with:
+```typescript
+// src/services/synqboxApi.ts
+export class SynqBoxAPI {
+  // WebSocket connection for real-time data
+  // HTTP client for device controls
+  // Error handling and reconnection logic
+}
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### 2. Update Real-time Hook
 
-## How can I deploy this project?
+```typescript
+// src/hooks/useRealTimeData.tsx
+// Replace mock intervals with WebSocket connection
+// Map API response to current data structure
+```
 
-Simply open [Lovable](https://lovable.dev/projects/6f8ca372-bcd7-4a5f-b1fd-e169ba2f5f0c) and click on Share -> Publish.
+### 3. Connect Controls
 
-## Can I connect a custom domain to my Lovable project?
+```typescript
+// src/pages/Controls.tsx
+// Wire up form submissions to API calls
+// Add loading states and error handling
+```
 
-Yes, you can!
+### 4. Live Logs Integration
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+```typescript
+// src/pages/Logs.tsx
+// Replace mock logs with streaming endpoint
+// Implement real-time filtering
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## 📊 Data Structure
+
+Current mock data structure for easy API mapping:
+
+```typescript
+interface RealTimeData {
+  synqLevel: number;          // Sync progress (0-100)
+  syncSpeed: string;          // Current speed (e.g., "42.7 MB/s")
+  lastSync: string;           // Human-readable time
+  isOnline: boolean;          // Connection status
+  isSyncing: boolean;         // Active sync state
+  health: string;             // System health message
+  uptime: string;             // Device uptime
+  networkStrength: number;    // Signal strength in dBm
+}
+```
+
+## 🎯 Key Features for Integration
+
+### Dashboard Components
+- **Hero Section**: Device status overview
+- **Metrics Grid**: Real-time statistics
+- **Quick Actions**: Start/stop sync, reboot device
+
+### Controls Page
+- **Network Settings**: WiFi configuration
+- **Sync Presets**: Custom sync configurations
+- **Advanced Settings**: Device-specific options
+
+### Logs Page
+- **Real-time Streaming**: Live log updates
+- **Filtering**: By level, timestamp, content
+- **Export**: Download logs for troubleshooting
+
+## 🚀 Deployment
+
+### Using Lovable
+1. Open [Lovable Project](https://lovable.dev/projects/6f8ca372-bcd7-4a5f-b1fd-e169ba2f5f0c)
+2. Click Share → Publish
+
+### Manual Deployment
+```bash
+npm run build
+# Deploy dist/ folder to your hosting service
+```
+
+## 🔐 Environment Variables
+
+For API integration, add:
+
+```env
+VITE_SYNQBOX_API_URL=http://your-synqbox-ip:port
+VITE_SYNQBOX_WS_URL=ws://your-synqbox-ip:port/ws
+VITE_API_KEY=your-api-key (if required)
+```
+
+## 🤝 Contributing
+
+1. Follow the existing code style and component patterns
+2. Use semantic commit messages
+3. Test on both light and dark themes
+4. Ensure responsive design compatibility
+
+## 📝 License
+
+This project is built for SynqBox device management.
+
+---
+
+**Ready for API integration** - All mock data can be easily replaced with real API calls while maintaining the same user experience.

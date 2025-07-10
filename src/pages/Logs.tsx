@@ -24,6 +24,18 @@ interface LogEntry {
   status: 'success' | 'warning' | 'error' | 'info';
 }
 
+/**
+ * Live Logs Page
+ * 
+ * Features:
+ * - Real-time log streaming (currently mock data)
+ * - Log level filtering (Info, Warning, Error)
+ * - Search functionality
+ * - Auto-scroll with pause capability
+ * 
+ * For API integration: Replace mock logs array with
+ * WebSocket connection to device log endpoint
+ */
 const Logs = () => {
   const { toast } = useToast();
   const [logs, setLogs] = useState<LogEntry[]>([
