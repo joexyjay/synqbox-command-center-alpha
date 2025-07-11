@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Circle, Settings, Book, FileText, Power } from 'lucide-react';
+import { Circle, Settings, Book, FileText, Power, Menu } from 'lucide-react';
+import multisynqLogo from '@/assets/multisynq-logo.png';
 import { ThemeToggle } from './ThemeToggle';
 
 const Layout = () => {
@@ -24,10 +25,10 @@ const Layout = () => {
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-2">
                 <div className="w-8 h-8 rounded-lg bg-gradient-synq flex items-center justify-center">
-                  <Circle className="w-4 h-4 text-white" />
+                  <img src={multisynqLogo} alt="Multisynq" className="w-5 h-5 object-contain" />
                 </div>
                 <h1 className="text-xl font-bold bg-gradient-synq bg-clip-text text-transparent">
-                  SynqBox Control Center
+                  Multisynq
                 </h1>
               </div>
               
@@ -53,13 +54,13 @@ const Layout = () => {
       {/* Navigation */}
       <nav className="border-b border-border bg-card">
         <div className="container mx-auto px-4">
-          <div className="flex space-x-1">
+          <div className="flex space-x-1 overflow-x-auto scrollbar-hide sm:overflow-visible">
             {navItems.map((item) => (
               <NavLink
                 key={item.path}
                 to={item.path}
                 className={({ isActive }) =>
-                  `flex items-center space-x-2 px-4 py-3 text-sm font-medium transition-colors rounded-t-lg ${
+                  `flex items-center space-x-2 px-4 py-3 text-sm font-medium transition-colors rounded-t-lg whitespace-nowrap ${
                     isActive
                       ? 'bg-background text-primary border-b-2 border-primary'
                       : 'text-muted-foreground hover:text-foreground hover:bg-muted'

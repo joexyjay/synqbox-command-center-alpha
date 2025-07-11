@@ -18,7 +18,7 @@ const Dashboard = () => {
       {/* Hero Section */}
       <Card className="relative overflow-hidden">
         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-20"
+          className="absolute inset-0 bg-cover bg-center opacity-35"
           style={{ backgroundImage: `url(${synqBoxHero})` }}
         />
         <CardContent className="relative p-8">
