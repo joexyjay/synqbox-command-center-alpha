@@ -54,7 +54,7 @@ const Layout = () => {
       {/* Navigation */}
       <nav className="border-b border-border bg-card">
         <div className="container mx-auto px-4">
-          <div className="flex space-x-1 overflow-x-auto scrollbar-hide sm:overflow-visible">
+          <div className="flex space-x-1 overflow-x-auto scrollbar-hide pb-0 min-w-max sm:overflow-visible sm:min-w-0">
             {navItems.map((item) => (
               <NavLink
                 key={item.path}

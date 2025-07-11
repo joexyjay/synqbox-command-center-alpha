@@ -160,7 +160,7 @@ const About = () => {
             <span className="font-semibold">SynqBox Control Center</span>
           </div>
           <p className="text-sm text-muted-foreground">
-            Built with ❤️ and <span className="text-primary font-medium">Lovable.dev</span>
+            Built with ❤️ for the future of synchronized computing
           </p>
           <p className="text-xs text-muted-foreground mt-2">
             Designed for the future of synchronized computing
