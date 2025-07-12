@@ -18,17 +18,16 @@ const Dashboard = () => {
       {/* Hero Section */}
       <Card className="relative overflow-hidden">
         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-70"
+          className="absolute inset-0 bg-cover bg-center opacity-50"
           style={{ backgroundImage: `url(${synqBoxHero})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/60 to-background/80" />
         <CardContent className="relative p-8">
           <div className="flex items-center justify-between">
-            <div className="backdrop-blur-sm bg-background/20 rounded-lg p-4 border border-white/10">
-              <h2 className="text-3xl font-bold mb-2 text-foreground drop-shadow-lg">Welcome to SynqBox</h2>
-              <p className="text-foreground/90 font-medium drop-shadow-md">Your device is running smoothly and ready for action</p>
+            <div>
+              <h2 className="text-3xl font-bold mb-2">Welcome to SynqBox</h2>
+              <p className="text-muted-foreground">Your device is running smoothly and ready for action</p>
             </div>
-            <div className="text-right backdrop-blur-sm bg-background/20 rounded-lg p-4 border border-white/10">
+            <div className="text-right">
               <Badge 
                 variant={data.isOnline ? "default" : "destructive"} 
                 className={`transition-all duration-500 ${data.isOnline ? "bg-success text-success-foreground animate-pulse-glow" : ""}`}
@@ -38,7 +37,7 @@ const Dashboard = () => {
                   <span>{data.isOnline ? 'Online' : 'Offline'}</span>
                 </div>
               </Badge>
-              <p className="text-sm text-foreground/90 font-medium mt-2 drop-shadow-md">Uptime: {data.uptime}</p>
+              <p className="text-sm text-muted-foreground mt-2">Uptime: {data.uptime}</p>
             </div>
           </div>
         </CardContent>
