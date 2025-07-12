@@ -54,25 +54,23 @@ const Layout = () => {
       {/* Navigation */}
       <nav className="border-b border-border bg-card">
         <div className="container mx-auto px-4">
-          <div className="flex overflow-x-auto scrollbar-hide -mx-4 px-4 sm:overflow-visible sm:mx-0 sm:px-0">
-            <div className="flex space-x-1 min-w-max">
-              {navItems.map((item) => (
-                <NavLink
-                  key={item.path}
-                  to={item.path}
-                  className={({ isActive }) =>
-                    `flex items-center space-x-2 px-6 py-3 text-sm font-medium transition-colors rounded-t-lg whitespace-nowrap min-w-max ${
-                      isActive
-                        ? 'bg-background text-primary border-b-2 border-primary'
-                        : 'text-muted-foreground hover:text-foreground hover:bg-muted'
-                    }`
-                  }
-                >
-                  <item.icon className="w-4 h-4" />
-                  <span>{item.label}</span>
-                </NavLink>
-              ))}
-            </div>
+          <div className="flex space-x-1 overflow-x-auto scrollbar-hide pb-0 min-w-max sm:overflow-visible sm:min-w-0">
+            {navItems.map((item) => (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                className={({ isActive }) =>
+                  `flex items-center space-x-2 px-4 py-3 text-sm font-medium transition-colors rounded-t-lg whitespace-nowrap ${
+                    isActive
+                      ? 'bg-background text-primary border-b-2 border-primary'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                  }`
+                }
+              >
+                <item.icon className="w-4 h-4" />
+                <span>{item.label}</span>
+              </NavLink>
+            ))}
           </div>
         </div>
       </nav>
