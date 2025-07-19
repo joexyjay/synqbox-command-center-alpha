@@ -4,7 +4,7 @@ A modern React-based dashboard for managing SynqBox devices with real-time monit
 
 ## 🚀 Live Demo
 
-**URL**: https://lovable.dev/projects/6f8ca372-bcd7-4a5f-b1fd-e169ba2f5f0c
+**URL**: [https://lovable.dev/projects/6f8ca372-bcd7-4a5f-b1fd-e169ba2f5f0c](https://synqbox-command-center-alpha.vercel.app/)
 
 ## 📋 Features
 
@@ -162,12 +162,6 @@ interface RealTimeData {
 - **Real-time Streaming**: Live log updates
 - **Filtering**: By level, timestamp, content
 - **Export**: Download logs for troubleshooting
-
-## 🚀 Deployment
-
-### Using Lovable
-1. Open [Lovable Project](https://lovable.dev/projects/6f8ca372-bcd7-4a5f-b1fd-e169ba2f5f0c)
-2. Click Share → Publish
 
 ### Manual Deployment
 ```bash
